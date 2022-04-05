@@ -14,7 +14,7 @@ public class Member {
         return id;
     }
 
-    public void setId(Long id){
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -22,7 +22,7 @@ public class Member {
         return name;
     }
 
-    public void setName(){
+    public void setName() {
         this.name = name;
     }
 
