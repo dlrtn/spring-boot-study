@@ -12,8 +12,11 @@ import java.util.Optional;
 @Service
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private MemberRepository memberRepository = new MemoryMemberRepository();
 
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     /**
      * 회원가입
@@ -23,7 +26,7 @@ public class MemberService {
         memberRepository.save(member);
         return member.getId();
     }
-  
+
     private void validateDuplicateMember(Member member) {
         memberRepository.findByName(member.getName())
                 .ifPresent(m -> {
@@ -37,7 +40,6 @@ public class MemberService {
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
-
 
     public Optional<Member> findOne(Long memberId) {
         return memberRepository.findById(memberId);
